@@ -90,7 +90,7 @@ const ParticleBackground = () => {
         },
         detectRetina: true,
       }}
-      init={particlesInit}
+      particlesInit={particlesInit}
       className="absolute inset-0 z-0"
     />
   );
