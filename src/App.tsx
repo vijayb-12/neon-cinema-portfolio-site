@@ -1,12 +1,45 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { Suspense } from "react";
+import Navigation from "./components/Navigation";
+import ParticleBackground from "./components/ParticleBackground";
+import LoadingScreen from "./components/LoadingScreen";
+import Hero from "./pages/Hero";
+import CallToAction from "./pages/CallToAction";
+import Resume from "./pages/Resume";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
+import Contact from "./pages/Contact";
+import Articles from "./pages/Articles";
+import CodingProfiles from "./pages/CodingProfiles";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Hero />} />
+        <Route path="/cta" element={<CallToAction />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/articles" element={<Articles />} />
+        <Route path="/profiles" element={<CodingProfiles />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -14,11 +47,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="min-h-screen bg-gray-950 text-white overflow-hidden relative">
+          <ParticleBackground />
+          <Navigation />
+          <Suspense fallback={<LoadingScreen />}>
+            <AnimatedRoutes />
+          </Suspense>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
