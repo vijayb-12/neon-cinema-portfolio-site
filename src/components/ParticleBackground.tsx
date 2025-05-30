@@ -77,7 +77,6 @@ const ParticleBackground = () => {
             animation: {
               enable: true,
               speed: 1,
-              minimumValue: 0.1,
             },
           },
           shape: {
@@ -88,7 +87,6 @@ const ParticleBackground = () => {
             animation: {
               enable: true,
               speed: 2,
-              minimumValue: 0.5,
             },
           },
         },
