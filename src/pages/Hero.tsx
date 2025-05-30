@@ -10,7 +10,11 @@ const FloatingIcon = ({ position, color }: { position: [number, number, number],
     <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
       <mesh position={position}>
         <icosahedronGeometry args={[0.5, 0]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+        <meshStandardMaterial 
+          color={color} 
+          emissive={color} 
+          emissiveIntensity={0.3} 
+        />
       </mesh>
     </Float>
   );
