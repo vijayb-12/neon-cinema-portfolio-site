@@ -10,12 +10,11 @@ const Navigation = () => {
 
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/cta", label: "CTA" },
     { path: "/resume", label: "Resume" },
+    { path: "/work-experience", label: "Experience" },
     { path: "/projects", label: "Projects" },
     { path: "/skills", label: "Skills" },
     { path: "/contact", label: "Contact" },
-    { path: "/articles", label: "Articles" },
     { path: "/profiles", label: "Profiles" },
   ];
 

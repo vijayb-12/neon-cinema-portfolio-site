@@ -12,8 +12,6 @@ const ParticleBackground = () => {
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
-      className="absolute inset-0 z-0"
       options={{
         background: {
           color: {
@@ -92,6 +90,8 @@ const ParticleBackground = () => {
         },
         detectRetina: true,
       }}
+      init={particlesInit}
+      className="absolute inset-0 z-0"
     />
   );
 };

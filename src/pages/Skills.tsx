@@ -2,13 +2,23 @@
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
 
-const skills = [
-  { name: "React", level: 95, color: "from-blue-400 to-blue-600" },
-  { name: "Three.js", level: 90, color: "from-green-400 to-green-600" },
-  { name: "TypeScript", level: 88, color: "from-blue-500 to-indigo-600" },
-  { name: "Node.js", level: 85, color: "from-green-500 to-emerald-600" },
-  { name: "Python", level: 82, color: "from-yellow-400 to-orange-500" },
-  { name: "PostgreSQL", level: 80, color: "from-blue-600 to-purple-600" },
+const skillCategories = [
+  {
+    category: "Frontend Development",
+    skills: ["React", "Three.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion"],
+  },
+  {
+    category: "Backend Development",
+    skills: ["Node.js", "Python", "Express.js", "Django", "REST APIs", "GraphQL"],
+  },
+  {
+    category: "Database & Tools",
+    skills: ["PostgreSQL", "MongoDB", "Git", "Docker", "AWS", "Vite", "Webpack"],
+  },
+  {
+    category: "Design & UX",
+    skills: ["Responsive Design", "UI/UX Principles", "Animation", "Accessibility", "Cross-browser Compatibility"],
+  },
 ];
 
 const achievements = [
@@ -59,25 +69,27 @@ const Skills = () => {
             >
               <h2 className="text-3xl font-bold mb-8 text-white">Technical Skills</h2>
               <div className="space-y-6">
-                {skills.map((skill, index) => (
+                {skillCategories.map((category, index) => (
                   <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    key={category.category}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
-                    className="group"
+                    className="p-6 bg-gray-900/30 backdrop-blur-lg rounded-2xl border border-gray-700/50"
                   >
-                    <div className="flex justify-between mb-2">
-                      <span className="text-white font-semibold">{skill.name}</span>
-                      <span className="text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
-                      <motion.div
-                        className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.7 + index * 0.1 }}
-                      />
+                    <h3 className="text-xl font-semibold mb-4 text-blue-400">
+                      {category.category}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <motion.span
+                          key={skill}
+                          whileHover={{ scale: 1.1 }}
+                          className="px-3 py-1 bg-gray-800/50 border border-gray-700 rounded-full text-sm text-gray-300"
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
                     </div>
                   </motion.div>
                 ))}
